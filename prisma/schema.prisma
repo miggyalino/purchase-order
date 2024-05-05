@@ -39,11 +39,11 @@ model PurchaseOrder {
 }
 
 model PurchaseOrderLine {
-  orderlineid    Int    @id
+  orderlineid    Int    @id @default(autoincrement())
   orderid        String
   productid      String
-  qty            Int
-  cost           Float
+  quantity            Int
+  price           Float
   Product        Product @relation(fields: [productid], references: [productid])
   PurchaseOrder  PurchaseOrder @relation(fields: [orderid], references: [orderid])
 }

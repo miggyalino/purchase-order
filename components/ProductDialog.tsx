@@ -16,6 +16,7 @@ import { Label } from "@/components/ui/label";
 export function ProductDialog() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     const formData = new FormData(e.currentTarget);
     const newProduct = Object.fromEntries(formData);
     const postProduct = {

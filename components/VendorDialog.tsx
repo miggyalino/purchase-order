@@ -18,6 +18,7 @@ export function VendorDialog() {
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    e.stopPropagation();
     const formData = new FormData(e.currentTarget);
     const newVendor = Object.fromEntries(formData);
     console.log(newVendor);
