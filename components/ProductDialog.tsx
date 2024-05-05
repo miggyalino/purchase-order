@@ -12,8 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useState } from "react";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export function ProductDialog() {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -34,13 +39,14 @@ export function ProductDialog() {
         body: JSON.stringify(postProduct),
       });
       const data = await response.json();
-      console.log(data);
+      setOpen(false);
+      toast("Product added successfully!");
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Add Product</Button>
       </DialogTrigger>

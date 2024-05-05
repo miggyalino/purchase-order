@@ -46,7 +46,7 @@ const ProductsTable = ({ cart, setCart }: ProductsTableProps) => {
             <TableHead>Cost</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="mx-auto">
+        <TableBody className="">
           {products &&
             products.map((product: Product) => (
               <TableRow key={product.productid} className="">

@@ -13,8 +13,11 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 export function VendorDialog() {
+  const [open, setOpen] = useState(false);
   const router = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,6 +36,8 @@ export function VendorDialog() {
       });
       const data = await response.json();
       console.log(data);
+      setOpen(false);
+      toast("Vendor added successfully!");
       e.currentTarget.reset();
       router.push("/");
     } catch (error) {
@@ -41,7 +46,7 @@ export function VendorDialog() {
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Add Vendor</Button>
       </DialogTrigger>
